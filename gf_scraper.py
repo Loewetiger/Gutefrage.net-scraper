@@ -33,13 +33,14 @@ def main(argv):
             sys.exit(2)
     print("Scraping ~" + str(int(pages) * 100) + ' questions with the tag "'
           + tag + '" from https://www.gutefrage.net ...')
+    print("\nAppending pages")
     appendSites(pages, tag)
+    print("\nGetting text and writing to file")
     pageToFile(output_file, page)
-    print("Finished!")
+    print("\nFinished!")
 
 
 def appendSites(pages, tag):
-    print("Appending pages")
     for n in tqdm(range(0, int(pages))):
         with urllib.request.urlopen("https://www.gutefrage.net/tag/" + tag
                                     + "/" + str(n + 1)) as url:
@@ -47,7 +48,6 @@ def appendSites(pages, tag):
 
 
 def pageToFile(output_file, page):
-    print("Getting text and writing to file")
     outfile = open(output_file, 'w', encoding="utf-8")
     for p in tqdm(page):
         soup = BeautifulSoup(p, 'html.parser')
