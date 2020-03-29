@@ -65,6 +65,7 @@ def usage():
     print('-t, --tag:    Set the tag for the question, default: "neue"')
     print('              https://www.gutefrage.net/beliebte_tags')
     print('-p, --pages:  Set the amount of pages to be scraped, default: "1"')
+    print('-h, --help:   View this text')
 
 
 if __name__ == "__main__":
