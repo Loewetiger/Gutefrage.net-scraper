@@ -10,10 +10,5 @@ A script for scraping questions off of the popular german Q&A site "gutefrage.ne
 
 ## Usage
 
-> Basic usage: python gf_scraper.py -o \<output file\> -t \<tag\> -p
-> \<pages\>
-> -o, --output: Set the output filename, default: "output.txt"
-> -t, --tag: Set the tag for the question, default: "neue"
-> https://www.gutefrage.net/beliebte_tags
-> -p, --pages: Set the amount of pages to be scraped, default: "1"
-> -h, --help: View the usage
+Basic usage: `python gf_scraper.py -o \<output file\> -t \<tag\> -p`
+Use `python gf_scraper.py -h` to view a more detailed explanation.
