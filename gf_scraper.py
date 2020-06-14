@@ -34,7 +34,7 @@ def main(argv):
     print("Scraping ~" + str(int(pages) * 100) + ' questions with the tag "'
           + tag + '" from https://www.gutefrage.net ...')
     print("\nAppending pages")
-    (appendSites(pages, tag))
+    appendSites(pages, tag)
     print("\nParsing questions")
     parsed_questions = parseQuestions()
     print("\nWriting to file")
