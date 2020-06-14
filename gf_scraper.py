@@ -34,10 +34,12 @@ def main(argv):
     print("Scraping ~" + str(int(pages) * 100) + ' questions with the tag "'
           + tag + '" from https://www.gutefrage.net ...')
     print("\nAppending pages")
-    appendSites(pages, tag)
-    print("\nGetting text and writing to file")
-    pageToFile(output_file, page)
-    print("\nFinished!")
+    (appendSites(pages, tag))
+    print("\nParsing questions")
+    parsed_questions = parseQuestions()
+    print("\nWriting to file")
+    textToFile(output_file, parsed_questions)
+    print("Finished!")
 
 
 def appendSites(pages, tag):
@@ -47,14 +49,20 @@ def appendSites(pages, tag):
             page.append(url.read())
 
 
-def pageToFile(output_file, page):
-    outfile = open(output_file, 'w', encoding="utf-8")
+def parseQuestions():
+    text_questions = []
     for p in tqdm(page):
         soup = BeautifulSoup(p, 'html.parser')
         only = soup.find_all("div",
                              {'class': 'H4 Question-title u-big u-mbm'})[:100]
         for i in only:
-            outfile.write(i.get_text() + "\n")
+            text_questions.append(i.get_text() + "\n")
+    return text_questions
+
+
+def textToFile(output_file, text):
+    outfile = open(output_file, 'w', encoding='utf-8')
+    outfile.writelines(text)
     outfile.close()
 
 
