@@ -44,9 +44,18 @@ def main(argv):
 
 def appendSites(pages, tag):
     for n in tqdm(range(0, int(pages))):
-        with urllib.request.urlopen("https://www.gutefrage.net/tag/" + tag
-                                    + "/" + str(n + 1)) as url:
-            page.append(url.read())
+        try:
+            with urllib.request.urlopen("https://www.gutefrage.net/tag/" + tag
+                                        + "/" + str(n + 1)) as url:
+                page.append(url.read())
+        except urllib.error.HTTPError:
+            if len(page) == 0:
+                print("Something went wrong with the request\n"
+                      + "The tag you entered probably doesn't exist")
+            else:
+                print("Something went wrong with the request\n"
+                      + "There probably aren't as many pages as you requested")
+                return
 
 
 def parseQuestions():
